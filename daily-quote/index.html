@@ -34,7 +34,7 @@
         getquote(api_url)
 
         function copyquote(){
-            var copytext = quote.innerHTML+" --- by"+author.innerHTML
+            var copytext = quote.innerHTML+" --- by "+author.innerHTML
             navigator.clipboard.writeText(copytext)
             copy_btn.innerHTML = 'Copied <i class="fa-solid fa-check"></i>';
         }
