@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/647d5d079b.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote of The Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="quote-box">
+        <h2>Quote of The Day</h2>
+        <blockquote  id="quote">Loading...</blockquote>
+        <span id="author">Loading...</span>
+        <div>
+            <button onclick="getquote(api_url)"><i class="fa-solid fa-rotate-right"></i>New Quote</button>
+            <button id="copy_button" onclick="copyquote()"><i class="fa-regular fa-copy"></i>Copy Quote</button>
+        </div>
+    </div>
+    <script>
+        copy_btn = document.getElementById("copy_button")
+        const quote = document.getElementById("quote");
+        const author = document.getElementById("author");
+        const api_url = "https://api.quotable.io/random";
+
+        async function getquote(url){
+            const response = await fetch(url);
+            var data = await response.json();
+            quote.innerHTML = data.content;
+            author.innerHTML = data.author
+            copy_btn.innerHTML = '<i class="fa-regular fa-copy"></i>Copy Quote'    
+        }
+
+        getquote(api_url)
+
+        function copyquote(){
+            var copytext = quote.innerHTML+" --- by"+author.innerHTML
+            navigator.clipboard.writeText(copytext)
+            copy_btn.innerHTML = 'Copied <i class="fa-solid fa-check"></i>';
+        }
+    </script>
+</body>
+</html>
